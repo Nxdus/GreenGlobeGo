@@ -6,6 +6,8 @@ import AddLocations from "@/components/Dashboard/Locations/AddLocations"
 import { FaPlus, FaChevronLeft, FaPen } from "react-icons/fa";
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic'
+
 const getLocations = async() => {
   try {
     const res = await fetch("https://green-globe-go.vercel.app/api/Posts/Location", {

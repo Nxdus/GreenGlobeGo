@@ -8,6 +8,8 @@ import { FaPlus, FaChevronLeft, FaPen } from "react-icons/fa";
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic'
+
 const getPosts = async() => {
   try {
     const res = await fetch("https://green-globe-go.vercel.app/api/Posts", {
