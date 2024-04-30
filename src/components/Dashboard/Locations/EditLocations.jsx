@@ -31,7 +31,7 @@ function EditLocations({id}) {
 
     try {
 
-      const res = await fetch(`https://localhost:3000/api/Posts/Location/${id}`, {
+      const res = await fetch(`https://green-globe-go.vercel.app/api/Posts/Location/${id}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json"

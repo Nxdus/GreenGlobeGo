@@ -8,7 +8,7 @@ const getPosts = async (location) => {
 
         if (!location) {
 
-            const res = await fetch("https://localhost:3000/api/Posts", {
+            const res = await fetch("https://green-globe-go.vercel.app/api/Posts", {
                 method: "GET",
                 cache: "no-store"
             });
@@ -20,7 +20,7 @@ const getPosts = async (location) => {
             return res.json();
         }
 
-        const res = await fetch(`https://localhost:3000/api/Posts?location=${location}`, {
+        const res = await fetch(`https://green-globe-go.vercel.app/api/Posts?location=${location}`, {
             method: "GET",
             cache: "no-store"
         });

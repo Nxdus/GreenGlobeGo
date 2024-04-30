@@ -13,7 +13,7 @@ function DeleteButton({id}) {
         const confirmed = confirm("Are you sure?");
 
         if (confirmed) {
-            const res = await fetch(`https://localhost:3000/api/Posts/${id}`, {
+            const res = await fetch(`https://green-globe-go.vercel.app/api/Posts/${id}`, {
                 method: "DELETE",
             });
 

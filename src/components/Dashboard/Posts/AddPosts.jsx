@@ -43,7 +43,7 @@ function AddPosts() {
         const formData = new FormData();
         formData.append("file", selectedFile)
 
-        const resImage = await fetch("https://localhost:3000/api/Image", {
+        const resImage = await fetch("https://green-globe-go.vercel.app/api/Image", {
             method: "POST",
             body: formData,
         })
@@ -54,7 +54,7 @@ function AddPosts() {
 
             if (result.imgUrl) setSelectedImage(result.imgUrl)
 
-            const res = await fetch("https://localhost:3000/api/Posts", {
+            const res = await fetch("https://green-globe-go.vercel.app/api/Posts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
