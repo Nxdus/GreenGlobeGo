@@ -55,7 +55,7 @@ export const authOptions = {
 
         try {
 
-          const resCheckUser = await fetch("https://green-globe-go.vercel.app//api/Register/checkUser", {
+          const resCheckUser = await fetch("https://green-globe-go.vercel.app/api/Register/checkUser", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
