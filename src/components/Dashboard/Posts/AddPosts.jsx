@@ -43,7 +43,7 @@ function AddPosts() {
         const formData = new FormData();
         formData.append("file", selectedFile)
 
-        const resImage = await fetch("https://green-globe-go.vercel.app/api/Image", {
+        const resImage = await fetch("https://green-globe-go.vercel.app//api/Image", {
             method: "POST",
             body: formData,
         })
@@ -52,14 +52,16 @@ function AddPosts() {
 
             const result = await resImage.json();
 
-            if (result.imgUrl) setSelectedImage(result.imgUrl)
+            console.log(result.url)
 
-            const res = await fetch("https://green-globe-go.vercel.app/api/Posts", {
+            if (result.url) setSelectedImage(result.url)
+
+            const res = await fetch("https://green-globe-go.vercel.app//api/Posts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                   },
-                  body: JSON.stringify({ title: newtitle, desc: newdesc, img: result.imgUrl, location: newLocation, lat: newLat, long: newLong })
+                  body: JSON.stringify({ title: newtitle, desc: newdesc, img: result.url, location: newLocation, lat: newLat, long: newLong })
             })
 
             if (res.ok) {
@@ -87,7 +89,7 @@ function AddPosts() {
                     <label>
                         <input type="file" hidden onChange={({target}) => {
                             if (target.files) {
-                                const file = target.files[0];
+                                const file = target.files?.item(0) || null;
                                 setSelectedImage(URL.createObjectURL(file));
                                 setSelectedFile(file);
                             }

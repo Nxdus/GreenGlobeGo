@@ -43,8 +43,12 @@ async function page({ searchParams }) {
           <div key={posts._id} className="w-80 flex flex-col items-center gap-2 px-8 py-4 border-b-4 border-slate-300 rounded-2xl bg-slate-50">
             <Image
               src={posts.img}
-              sizes='(max-width: 768px) 100vw, 33vw'
-              quality={100}
+              width={120}
+              height={120}
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+              style={{ height: '100%', width: '100%' }}
               alt="รูปภาพ"
               className='bg-white rounded-2xl'
             />
