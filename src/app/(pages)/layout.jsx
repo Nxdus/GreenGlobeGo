@@ -14,7 +14,7 @@ export default function PagesLayout({children}) {
     if (!session) redirect("/")
 
     return (
-        <main className="w-full h-screen">
+        <main className="w-full h-dvh">
             {children}
             {pathname !== '/pages/dashboard' && (<Navbar />)}
         </main>
