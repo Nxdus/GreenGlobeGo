@@ -17,30 +17,32 @@ export const authOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {},
-      // async authorize(credentials, req) {
+      async authorize(credentials, req) {
 
-      //   const { email, password } = credentials;
+        const { email, password } = credentials;
 
-      //   try {
-      //     await connectDB();
-      //     const user = await User.findOne({email: email});
+        console.log(email, password)
 
-      //     if (!user) {
-      //       return null
-      //     }
+        // try {
+        //   await connectDB();
+        //   const user = await User.findOne({email: email});
 
-      //     const passwordMatched = await bcrypt.compare(password, user.password);
+        //   if (!user) {
+        //     return null
+        //   }
 
-      //     if (!passwordMatched) {
-      //       return null
-      //     }
+        //   const passwordMatched = await bcrypt.compare(password, user.password);
 
-      //     return user
+        //   if (!passwordMatched) {
+        //     return null
+        //   }
 
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
-      // }
+        //   return user
+
+        // } catch (error) {
+        //   console.log(error)
+        // }
+      }
     }),
   ],
   callbacks: {
