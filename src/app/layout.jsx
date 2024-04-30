@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={mitr.className}>
-        <div className="w-full h-screen flex justify-center items-center bg-black">
+        <div className="w-full h-dvh flex justify-center items-center bg-black">
           <div className="w-full h-full flex justify-center bg-[#FFF5E8] sm:hidden">
             <AuthProviders>
               {children}

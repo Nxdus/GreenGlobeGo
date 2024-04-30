@@ -50,7 +50,7 @@ export default function Home() {
         height={50} 
         alt="Green Globe Go Logo" 
         priority={ true }
-        className="w-[106px] h-[141px]" 
+        className="w-[106px] h-[141px] mt-20" 
       />
 
       {error && (
