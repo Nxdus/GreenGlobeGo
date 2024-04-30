@@ -1,5 +1,6 @@
 {
   "name": "green-globe-go-deploy",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
