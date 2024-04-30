@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 const getPosts = async() => {
   try {
-    const res = await fetch("https://localhost:3000/api/Posts", {
+    const res = await fetch("https://green-globe-go.vercel.app/api/Posts", {
       method: "GET",
       cache: "no-store"
     });

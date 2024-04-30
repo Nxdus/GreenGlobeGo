@@ -26,7 +26,7 @@ function page({ searchParams }) {
 
     try {
 
-      const res = await fetch(`https://localhost:3000/api/Register/${session.user.id}`, {
+      const res = await fetch(`https://green-globe-go.vercel.app/api/Register/${session.user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -49,7 +49,7 @@ function page({ searchParams }) {
 
     try {
 
-      const resCheckPasswrod = await fetch(`https://localhost:3000/api/Register/checkPassword/${session.user.id}`, {
+      const resCheckPasswrod = await fetch(`https://green-globe-go.vercel.app/api/Register/checkPassword/${session.user.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -61,7 +61,7 @@ function page({ searchParams }) {
   
       if (!matched) return
 
-      const res = await fetch(`https://localhost:3000/api/Register/${session.user.id}`, {
+      const res = await fetch(`https://green-globe-go.vercel.app/api/Register/${session.user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

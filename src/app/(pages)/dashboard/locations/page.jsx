@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const getLocations = async() => {
   try {
-    const res = await fetch("https://localhost:3000/api/Posts/Location", {
+    const res = await fetch("https://green-globe-go.vercel.app/api/Posts/Location", {
       method: "GET",
       cache: "no-store"
     });
