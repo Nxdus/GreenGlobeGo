@@ -113,13 +113,6 @@ function viewMaps() {
         router.push(`/calculator?distance=${distance}`);
     }
 
-    navigator.permissions.query({ name: 'geolocation' }).then(function(result) {
-        const permission = result.state;
-        if ( permission === 'granted' || permission === 'prompt' ) {
-            navigator.geolocation.getCurrentPosition((pos) => {console.log(pos.coords.latitude, pos.coords.longitude)})
-        }
-    });
-
     return (
         <main className='w-full h-full' >
 
