@@ -25,6 +25,8 @@ export const authOptions = {
           await connectDB();
           const user = await User.findOne({email: email});
 
+          console.log(user)
+
           if (!user) {
             return null;
           }
@@ -44,79 +46,79 @@ export const authOptions = {
       }
     }),
   ],
-//   callbacks: {
-//     async signIn({ user, account }) {
+  callbacks: {
+    async signIn({ user, account }) {
 
-//       if (account.provider === 'google') {
+      if (account.provider === 'google') {
 
-//         const username = user.name
-//         const email = user.email
-//         const password = user.id
+        const username = user.name
+        const email = user.email
+        const password = user.id
 
-//         try {
+        try {
 
-//           const resCheckUser = await fetch("https://localhost:3000/api/Register/checkUser", {
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({ email })
-//           })
+          const resCheckUser = await fetch("https://localhost:3000/api/Register/checkUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+          })
 
-//           const { user } = await resCheckUser.json();
+          const { user } = await resCheckUser.json();
 
-//           if (user) return true
+          if (user) return true
 
-//           const res = await fetch("https://localhost:3000/api/Register", {
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//               username, email, password
-//             })
-//           })
+          const res = await fetch("https://localhost:3000/api/Register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username, email, password
+            })
+          })
 
-//           if (!res.ok) throw new Error("Somethings went wrong !")
+          if (!res.ok) throw new Error("Somethings went wrong !")
 
-//         } catch (error) {
-//           console.log(error)
-//         }
+        } catch (error) {
+          console.log(error)
+        }
         
-//       }
+      }
 
-//       return true
-//     },
+      return true
+    },
 
-//     async session({ session, user, token }) {
+    async session({ session, user, token }) {
 
-//       if (token) {
-//         session.user.id = token.id
-//         session.user.name = token.name
-//         session.user.email = token.email
-//         session.user.role = token.role
-//       }
+      if (token) {
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.role = token.role
+      }
 
-//       return session
-//     },
+      return session
+    },
 
-//     async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token, user, account, profile, isNewUser }) {
 
-//       const userDB = await User.findOne({email: token.email});
+      const userDB = await User.findOne({email: token.email});
 
-//       if (!userDB) {
-//         token.id = user.id;
-//         return token
-//       }
+      if (!userDB) {
+        token.id = user.id;
+        return token
+      }
 
-//       return {
-//         id: userDB.id,
-//         name: userDB.username,
-//         email: userDB.email,
-//         role: userDB.role,
-//       }
-//     }
-//   }
+      return {
+        id: userDB.id,
+        name: userDB.username,
+        email: userDB.email,
+        role: userDB.role,
+      }
+    }
+  }
 }
 
 const handler = NextAuth(authOptions);
