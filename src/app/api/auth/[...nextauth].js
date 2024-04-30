@@ -23,25 +23,25 @@ export const authOptions = {
 
         console.log(email, password)
 
-        // try {
-        //   await connectDB();
-        //   const user = await User.findOne({email: email});
+        try {
+          await connectDB();
+          const user = await User.findOne({email: email});
 
-        //   if (!user) {
-        //     return null
-        //   }
+          if (!user) {
+            return null
+          }
 
-        //   const passwordMatched = await bcrypt.compare(password, user.password);
+          const passwordMatched = await bcrypt.compare(password, user.password);
 
-        //   if (!passwordMatched) {
-        //     return null
-        //   }
+          if (!passwordMatched) {
+            return null
+          }
 
-        //   return user
+          return user
 
-        // } catch (error) {
-        //   console.log(error)
-        // }
+        } catch (error) {
+          console.log(error)
+        }
       }
     }),
   ],

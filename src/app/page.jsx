@@ -39,7 +39,7 @@ export default function Home() {
   };
 
   const loginWithGoogle = () => {
-    signIn("google", { callbackUrl: `/dashboard` });
+    signIn("google", { callbackUrl: `/dashboard` })
   };
 
   return (
