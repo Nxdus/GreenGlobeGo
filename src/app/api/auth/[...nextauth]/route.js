@@ -17,106 +17,105 @@ export const authOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {},
-      async authorize(credentials, req) {
+      // async authorize(credentials, req) {
 
-        const { email, password } = credentials;
+      //   const { email, password } = credentials;
+
+      //   try {
+      //     await connectDB();
+      //     const user = await User.findOne({email: email});
+
+      //     if (!user) {
+      //       return null
+      //     }
+
+      //     const passwordMatched = await bcrypt.compare(password, user.password);
+
+      //     if (!passwordMatched) {
+      //       return null
+      //     }
+
+      //     return user
+
+      //   } catch (error) {
+      //     console.log(error)
+      //   }
+      // }
+    }),
+  ],
+  callbacks: {
+    async signIn({ user, account }) {
+
+      if (account.provider === 'google') {
+
+        const username = user.name
+        const email = user.email
+        const password = user.id
 
         try {
-          await connectDB();
-          const user = await User.findOne({email: email});
 
-          if (!user) {
-            return null;
-          }
+          const resCheckUser = await fetch("https://green-globe-go.vercel.app/api/Register/checkUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+          })
 
-          const passwordMatched = await bcrypt.compare(password, user.password);
+          const { user } = await resCheckUser.json();
 
-          if (!passwordMatched) {
-            return null;
-          }
+          if (user) return true
 
-          return user;
+          const res = await fetch("https://green-globe-go.vercel.app/api/Register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username, email, password
+            })
+          })
+
+          if (!res.ok) throw new Error("Somethings went wrong !")
 
         } catch (error) {
           console.log(error)
         }
-
-      }
-    }),
-  ],
-  // callbacks: {
-  //   async signIn({ user, account }) {
-
-  //     if (account.provider === 'google') {
-
-  //       const username = user.name
-  //       const email = user.email
-  //       const password = user.id
-
-  //       try {
-
-  //         const resCheckUser = await fetch("https://green-globe-go.vercel.app/api/Register/checkUser", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json"
-  //           },
-  //           body: JSON.stringify({ email })
-  //         })
-
-  //         const { user } = await resCheckUser.json();
-
-  //         if (user) return true
-
-  //         const res = await fetch("https://green-globe-go.vercel.app/api/Register", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json"
-  //           },
-  //           body: JSON.stringify({
-  //             username, email, password
-  //           })
-  //         })
-
-  //         if (!res.ok) throw new Error("Somethings went wrong !")
-
-  //       } catch (error) {
-  //         console.log(error)
-  //       }
         
-  //     }
+      }
 
-  //     return true
-  //   },
+      return true
+    },
 
-  //   async session({ session, user, token }) {
+    async session({ session, user, token }) {
 
-  //     if (token) {
-  //       session.user.id = token.id
-  //       session.user.name = token.name
-  //       session.user.email = token.email
-  //       session.user.role = token.role
-  //     }
+      if (token) {
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.role = token.role
+      }
 
-  //     return session
-  //   },
+      return session
+    },
 
-  //   async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token, user, account, profile, isNewUser }) {
 
-  //     const userDB = await User.findOne({email: token.email});
+      const userDB = await User.findOne({email: token.email});
 
-  //     if (!userDB) {
-  //       token.id = user.id;
-  //       return token
-  //     }
+      if (!userDB) {
+        token.id = user.id;
+        return token
+      }
 
-  //     return {
-  //       id: userDB.id,
-  //       name: userDB.username,
-  //       email: userDB.email,
-  //       role: userDB.role,
-  //     }
-  //   }
-  // }
+      return {
+        id: userDB.id,
+        name: userDB.username,
+        email: userDB.email,
+        role: userDB.role,
+      }
+    }
+  }
 }
 
 const handler = NextAuth(authOptions);
