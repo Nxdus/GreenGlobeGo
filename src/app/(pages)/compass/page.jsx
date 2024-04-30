@@ -5,7 +5,7 @@ import React from 'react'
 function page({ searchParams }) { 
 
   return (
-    <div className='w-full h-screen flex flex-col justify-center items-center'>
+    <div className='w-full h-full flex flex-col justify-center items-center'>
       <p className="text-2xl"> สถานที่ท่องเที่ยวรักโลก </p>
       <Search />
       <Posts location={searchParams.location} />

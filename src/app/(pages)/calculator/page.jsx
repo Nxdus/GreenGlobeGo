@@ -19,7 +19,7 @@ function page() {
   const [useMaps, setUseMaps] = useState(true);
 
   return (
-    <div className='w-full h-screen flex flex-col justify-center items-center'>
+    <div className='w-full h-full flex flex-col justify-center items-center'>
       {!distance && (<button className='w-12 h-12 p-2 flex justify-center items-center rounded-full border-b-4 border-[#E2B274] bg-[#F7DCB9]
       absolute top-12 right-4 z-10' onClick={() => setUseMaps(!useMaps)} ><FaMap className='text-3xl text-[#D69359] drop-shadow-sm' /></button>)}
       {useMaps ? !distance && (<ViewMaps />) : !distance && (<GetDistance />)}
