@@ -21,27 +21,26 @@ export const authOptions = {
 
         const { email, password } = credentials;
 
-        console.log(email, password)
-
         try {
           await connectDB();
           const user = await User.findOne({email: email});
 
           if (!user) {
-            return null
+            return null;
           }
 
           const passwordMatched = await bcrypt.compare(password, user.password);
 
           if (!passwordMatched) {
-            return null
+            return null;
           }
 
-          return user
+          return user;
 
         } catch (error) {
           console.log(error)
         }
+
       }
     }),
   ],
@@ -56,7 +55,7 @@ export const authOptions = {
 
         try {
 
-          const resCheckUser = await fetch("https://green-globe-go.vercel.app/api/Register/checkUser", {
+          const resCheckUser = await fetch("https://green-globe-go.vercel.app//api/Register/checkUser", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -120,5 +119,5 @@ export const authOptions = {
   }
 }
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }
