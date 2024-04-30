@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/connectDB";
 import Location from "@/model/location";
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req) {
     const {location, desc}  = await req.json();
 
